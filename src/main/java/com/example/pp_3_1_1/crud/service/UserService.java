@@ -11,20 +11,20 @@ import java.util.List;
 @Service
 public class UserService implements IUserService{
 
-    IUserDao dao;
+    private final IUserDao dao;
 
     @Autowired
     public UserService(IUserDao dao) {
         this.dao = dao;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
         return dao.getAllUsers();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public User getUserById(int id) {
         return dao.getUserById(id);
